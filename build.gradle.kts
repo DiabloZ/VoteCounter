@@ -19,6 +19,9 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     //Парсер HTML -> Text
     implementation ("org.jsoup:jsoup:1.15.3")
+
+    implementation("org.apache.logging.log4j:log4j-api:2.19.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.19.0")
 }
 
 kotlin {

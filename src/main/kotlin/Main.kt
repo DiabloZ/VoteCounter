@@ -1,6 +1,6 @@
 package suhov.vitaly
 
-fun main() {
+suspend fun main() {
 	Main().runAll()
 }
 
@@ -10,7 +10,7 @@ class Main: VoteListener, VoteResultsListener {
 	private val mailConnector = MailConnector(this)
 	private val voteCounter = VoteCounter(this)
 	private val resultPrinter = ResultPrinter()
-	fun runAll(){
+	suspend fun runAll(){
 		val credentials = propsReader.getCredentials()
 		mailConnector.prepareServer(credentials)
 		mailConnector.startHandling()
