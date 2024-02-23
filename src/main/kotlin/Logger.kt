@@ -9,6 +9,6 @@ object Logger {
 		Configurator.setAllLevels(this.name, Level.ALL)
 	}
 	fun printText(any: Any, text: Any){
-		logger.info("Function - $any, text - $text")
+		logger.info("Function - $any - $text")
 	}
 }
