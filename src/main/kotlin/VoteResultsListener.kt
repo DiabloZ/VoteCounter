@@ -1,5 +1,5 @@
 package suhov.vitaly
 
 interface VoteResultsListener {
-	fun sendVoteResult()
+	fun sendVoteResult(voteResults: VoteResults)
 }

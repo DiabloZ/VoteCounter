@@ -6,4 +6,5 @@ import kotlinx.coroutines.Dispatchers
 object Utils {
 	val scope = CoroutineScope(Dispatchers.IO)
 	const val BLANK = ""
+	const val TOTAL_SQUARE_METERS = 22332.0
 }

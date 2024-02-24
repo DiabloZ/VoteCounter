@@ -25,9 +25,12 @@ object MailSubjectParser {
 
 
 		val flatNumber = digital.firstOrNull()?.toIntOrNull() ?: defaultNumber
-		val squareMeters = if (digital.size == 2) {
-			digital.lastOrNull()?.toDoubleOrNull() ?: defaultMeters
-		} else defaultMeters
+		val totalSquareMeters = digital.lastOrNull()?.toDoubleOrNull() ?: defaultMeters
+		val squareMeters = if (digital.size == 2 && totalSquareMeters < 88.0) {
+			totalSquareMeters
+		} else {
+			defaultMeters
+		}
 		return flatNumber to squareMeters
 	}
 }
