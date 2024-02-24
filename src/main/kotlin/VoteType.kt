@@ -18,10 +18,3 @@ sealed interface VoteType {
 		override val voteNumber: Int = 4
 	}
 }
-
-enum class VoteTypes(val voteNumber: Int) {
-	YES(1),
-	NO(2),
-	ABSTAINED(3),
-	ERROR(404)
-}

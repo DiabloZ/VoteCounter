@@ -1,6 +1,6 @@
 package suhov.vitaly
 
-object MessageParser {
+object MailContentParser {
 
 	private const val DELIMITER = "\n"
 	private val regexPoint = Regex("\\d+")
@@ -17,7 +17,7 @@ object MessageParser {
 			val answerNumber = answers.firstOrNull()?.toIntOrNull()
 			val answerDigit = answers.lastOrNull()?.toIntOrNull()
 
-			if (answerNumber != null && answerDigit != null && answerNumber <= 24) {
+			if (answerNumber != null && answerDigit != null && answerNumber <= numberOfVoices) {
 				if (answers.size > 2 || answers.size <= 1) {
 					mapVotes[answerNumber] = VoteType.ERROR
 					return@forEach
@@ -50,7 +50,7 @@ fun main(){
 		"23  2\n" +
 		"27  2\n"
 
-	MessageParser.parse(message).forEach {
+	MailContentParser.parse(message).forEach {
 		Logger.printText("MessageParserTEST", it)
 	}
 }
