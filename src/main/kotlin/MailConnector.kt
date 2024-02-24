@@ -45,16 +45,16 @@ class MailConnector(private val voteListener: VoteListener) {
 		folder.open(Folder.READ_ONLY)
 
 		val messages = folder.messages
-		val jobList: MutableList<Deferred<Unit>> = mutableListOf()
+		val jobList: MutableList<Deferred<Vote>> = mutableListOf()
 		messages.forEach { message ->
 			val deferred = scope.async {
-				val vote = MessageHandler.handleMessage(message)
-				voteListener.sendVote(vote)
+				MessageHandler.handleMessage(message)
 			}
 			jobList.add(deferred)
 		}
-		jobList.forEach { deferred -> deferred.await() }
-		voteListener.finishHandling()
+
+		val voteList = jobList.map { deferred -> deferred.await() }
+		voteListener.finishHandling(voteList)
 
 		folder.close(true)
 		store.close()

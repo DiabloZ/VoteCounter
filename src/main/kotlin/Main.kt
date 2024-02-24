@@ -16,12 +16,8 @@ class Main: VoteListener, VoteResultsListener {
 		mailConnector.startHandling()
 	}
 
-	override fun sendVote(vote: Vote) {
-		voteCounter.handleVote(vote)
-	}
-
-	override fun finishHandling() {
-		voteCounter.finishHandling()
+	override fun finishHandling(voteList: List<Vote>) {
+		voteCounter.handleVotes(voteList)
 	}
 
 	override fun sendVoteResult() {

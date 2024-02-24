@@ -16,7 +16,7 @@ data class Vote (
 	fun isFill() = isHaveSquareMeters && isHaveOwnType && isHaveAttachment && isHaveAllVotes
 }
 
- const val numberOfVoices = 21
+const val numberOfVoices = 21
 
 private fun checkVotes(voteMap: Map<Int, VoteType>): Boolean {
 	var isContainAllAnswers = true
