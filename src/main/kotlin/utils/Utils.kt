@@ -1,4 +1,4 @@
-package suhov.vitaly
+package suhov.vitaly.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

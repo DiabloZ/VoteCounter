@@ -1,4 +1,4 @@
-package suhov.vitaly
+package suhov.vitaly.models
 
 import kotlinx.serialization.Serializable
 

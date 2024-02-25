@@ -1,6 +1,9 @@
-package suhov.vitaly
+package suhov.vitaly.parsers
 
-import suhov.vitaly.Constants.MAXINUM_SIZE_OF_VOTE
+import suhov.vitaly.models.VoteType
+import suhov.vitaly.utils.Constants
+import suhov.vitaly.utils.Constants.MAXINUM_SIZE_OF_VOTE
+import suhov.vitaly.utils.Logger
 
 object MailContentParser {
 

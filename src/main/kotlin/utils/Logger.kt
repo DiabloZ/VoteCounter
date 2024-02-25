@@ -1,11 +1,11 @@
-package suhov.vitaly
+package suhov.vitaly.utils
 
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.core.config.Configurator
 
 object Logger {
-	//val name = object : Any() {}.javaClass.enclosingMethod.name
+
 	private val logger = LogManager.getRootLogger().apply {
 		Configurator.setAllLevels(this.name, Level.ALL)
 	}

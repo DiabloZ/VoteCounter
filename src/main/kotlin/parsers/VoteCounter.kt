@@ -1,4 +1,8 @@
-package suhov.vitaly
+package suhov.vitaly.parsers
+
+import suhov.vitaly.models.Vote
+import suhov.vitaly.models.VoteResults
+import suhov.vitaly.models.VoteResultsListener
 
 class VoteCounter(private val voteResultsListener: VoteResultsListener) {
 	fun handleVotes(voteList: List<Vote>) {

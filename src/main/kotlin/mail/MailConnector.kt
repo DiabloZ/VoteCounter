@@ -1,8 +1,12 @@
-package suhov.vitaly
+package suhov.vitaly.mail
 
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
-import suhov.vitaly.Utils.scope
+import suhov.vitaly.models.Credentials
+import suhov.vitaly.parsers.MessageHandler
+import suhov.vitaly.utils.Utils.scope
+import suhov.vitaly.models.Vote
+import suhov.vitaly.models.VoteListener
 import java.util.Properties
 import javax.mail.Folder
 import javax.mail.Session

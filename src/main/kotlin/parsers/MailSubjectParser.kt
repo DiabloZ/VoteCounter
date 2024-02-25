@@ -1,8 +1,9 @@
-package suhov.vitaly
+package suhov.vitaly.parsers
 
-import suhov.vitaly.Constants.DEFAULT_METERS
-import suhov.vitaly.Constants.DEFAULT_NUMBER
-import suhov.vitaly.Constants.MAXINUM_SIZE_OF_VOTE
+import suhov.vitaly.utils.Constants.DEFAULT_METERS
+import suhov.vitaly.utils.Constants.DEFAULT_NUMBER
+import suhov.vitaly.utils.Constants.MAXINUM_SIZE_OF_VOTE
+import suhov.vitaly.models.OwnType
 
 object MailSubjectParser {
 

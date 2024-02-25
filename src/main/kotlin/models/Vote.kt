@@ -1,4 +1,6 @@
-package suhov.vitaly
+package suhov.vitaly.models
+
+import suhov.vitaly.utils.Constants
 
 data class Vote (
 	val date: String,

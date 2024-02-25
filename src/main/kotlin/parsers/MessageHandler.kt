@@ -1,6 +1,8 @@
-package suhov.vitaly
+package suhov.vitaly.parsers
 
-import suhov.vitaly.Constants.BLANK
+import suhov.vitaly.models.Vote
+import suhov.vitaly.models.VoteType
+import suhov.vitaly.utils.Constants.BLANK
 import javax.mail.Address
 import javax.mail.Message
 import javax.mail.Multipart

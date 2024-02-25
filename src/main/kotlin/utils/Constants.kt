@@ -1,4 +1,4 @@
-package suhov.vitaly
+package suhov.vitaly.utils
 
 object Constants {
 	const val BLANK = ""

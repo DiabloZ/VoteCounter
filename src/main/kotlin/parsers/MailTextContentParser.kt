@@ -1,4 +1,6 @@
-package suhov.vitaly
+package suhov.vitaly.parsers
+
+import suhov.vitaly.utils.Constants
 
 object MailTextContentParser {
 	private val regexHtml = Regex("<[^>]*>")

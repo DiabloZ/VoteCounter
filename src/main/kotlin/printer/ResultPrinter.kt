@@ -1,7 +1,11 @@
-package suhov.vitaly
+package suhov.vitaly.printer
 
-import suhov.vitaly.Constants.BLANK
-import suhov.vitaly.Constants.DEFAULT_METERS
+import suhov.vitaly.models.VoteResults
+import suhov.vitaly.models.VoteType
+import suhov.vitaly.utils.Constants
+import suhov.vitaly.utils.Constants.BLANK
+import suhov.vitaly.utils.Constants.DEFAULT_METERS
+import suhov.vitaly.utils.Logger
 
 class ResultPrinter {
 	fun printResults(voteResults: VoteResults) {

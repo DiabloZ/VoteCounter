@@ -1,5 +1,14 @@
 package suhov.vitaly
 
+import suhov.vitaly.credentials.PropsReader
+import suhov.vitaly.mail.MailConnector
+import suhov.vitaly.models.Vote
+import suhov.vitaly.models.VoteListener
+import suhov.vitaly.models.VoteResults
+import suhov.vitaly.models.VoteResultsListener
+import suhov.vitaly.parsers.VoteCounter
+import suhov.vitaly.printer.ResultPrinter
+
 suspend fun main() {
 	Main().runAll()
 }

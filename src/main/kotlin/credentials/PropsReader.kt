@@ -1,6 +1,7 @@
-package suhov.vitaly
+package suhov.vitaly.credentials
 
 import kotlinx.serialization.json.Json
+import suhov.vitaly.models.Credentials
 import java.io.File
 import java.io.InputStream
 
