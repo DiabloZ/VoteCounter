@@ -2,7 +2,7 @@ package suhov.vitaly.parsers
 
 import suhov.vitaly.models.VoteType
 import suhov.vitaly.utils.Constants
-import suhov.vitaly.utils.Constants.MAXINUM_SIZE_OF_VOTE
+import suhov.vitaly.utils.Constants.MAXIMUM_SIZE_OF_VOTE
 import suhov.vitaly.utils.Logger
 
 object MailContentParser {
@@ -23,7 +23,7 @@ object MailContentParser {
 			val answerDigit = answers.lastOrNull()?.toIntOrNull()
 
 			if (answerNumber != null && answerDigit != null && answerNumber <= Constants.NUMBER_OF_VOICES) {
-				if (answers.size > MAXINUM_SIZE_OF_VOTE || answers.size <= 1) {
+				if (answers.size > MAXIMUM_SIZE_OF_VOTE || answers.size <= 1) {
 					mapVotes[answerNumber] = VoteType.ERROR
 					return@forEach
 				}
