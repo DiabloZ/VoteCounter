@@ -3,6 +3,7 @@ package suhov.vitaly.parsers
 import suhov.vitaly.models.Vote
 import suhov.vitaly.models.VoteType
 import suhov.vitaly.utils.Constants.BLANK
+import suhov.vitaly.utils.Constants.NUMBER_OF_VOICES
 import javax.mail.Address
 import javax.mail.Message
 import javax.mail.Part
@@ -34,13 +35,12 @@ object MessageHandler {
 						val disposition = part.disposition
 						when {
 							disposition != null && disposition.contains(Part.ATTACHMENT) -> {
-								val fileName = MimeUtility.decodeText(part.fileName)
 								isHaveAttachment = true
 							}
 							part.content != null -> {
 								val answersText = MailTextContentParser.cleanBodyContent(part.content.toString())
 								voteMap = MailContentParser.parse(answersText)
-								if (voteMap.isEmpty()){
+								if (voteMap.size != NUMBER_OF_VOICES){
 									val partInside = part.content as? MimeMultipart
 									partInside?.apply {
 										for (j in 0..< partInside.count) {

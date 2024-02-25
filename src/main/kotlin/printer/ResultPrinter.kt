@@ -14,20 +14,21 @@ class ResultPrinter {
 
 		val stringPercent = calculatePercent(sum = voteResults.totalSuccessSquareMeters, total = Constants.TOTAL_SQUARE_METERS)
 		Logger.printResult("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters} из ${Constants.TOTAL_SQUARE_METERS} это $stringPercent%\n")
+		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters.cutAfterComma()} из ${Constants.TOTAL_SQUARE_METERS} это $stringPercent%\n")
 
-		voteResults.voteMap.forEach { (voteNumber, map) ->
+		for (voteNumber in 1..Constants.NUMBER_OF_VOICES) {
 			var yesSum = DEFAULT_METERS
 			var noSum = DEFAULT_METERS
 			var abstainedSum = DEFAULT_METERS
 			var errorSum = DEFAULT_METERS
 
-			map.forEach { (voteType, vote) ->
+			voteResults.goodVoters.forEach { voter ->
+				val voteType = voter.voteMap[voteNumber]
 				when(voteType){
-					VoteType.ABSTAINED -> abstainedSum += vote.squareMeters
-					VoteType.ERROR -> errorSum += vote.squareMeters
-					VoteType.NO -> noSum += vote.squareMeters
-					VoteType.YES -> yesSum += vote.squareMeters
+					VoteType.ABSTAINED -> abstainedSum += voter.squareMeters
+					VoteType.NO -> noSum += voter.squareMeters
+					VoteType.YES -> yesSum += voter.squareMeters
+					else -> errorSum += voter.squareMeters
 				}
 			}
 
@@ -40,10 +41,10 @@ class ResultPrinter {
 			Logger.printResult("Вопрос №$voteNumber")
 			Logger.printResult("${questionMap[voteNumber]}\n")
 			Logger.printResult("Проголосовали -")
-			Logger.printResult("За - кв.м $yesSum, $yesSumPercent%")
-			Logger.printResult("Против - кв.м $noSum, $noSumPercent%")
-			Logger.printResult("Воздержались - кв.м $abstainedSum, $abstainedSumPercent%")
-			Logger.printResult("Проголосовали с ошибкой кв.м - $errorSum, $errorSumPercent%")
+			Logger.printResult("За - кв.м ${yesSum.cutAfterComma()}, $yesSumPercent%")
+			Logger.printResult("Против - кв.м ${noSum.cutAfterComma()}, $noSumPercent%")
+			Logger.printResult("Воздержались - кв.м ${abstainedSum.cutAfterComma()}, $abstainedSumPercent%")
+			Logger.printResult("Проголосовали с ошибкой кв.м - ${errorSum.cutAfterComma()}, $errorSumPercent%")
 			Logger.printResult("//////////////////////////////////\n")
 		}
 
@@ -91,3 +92,5 @@ class ResultPrinter {
 
 	}
 }
+
+fun Number.cutAfterComma(num: Int = 1): String = String.format("%.${num}f", this)
