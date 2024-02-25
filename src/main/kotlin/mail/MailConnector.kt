@@ -3,10 +3,11 @@ package suhov.vitaly.mail
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import suhov.vitaly.models.Credentials
-import suhov.vitaly.parsers.MessageHandler
-import suhov.vitaly.utils.Utils.scope
 import suhov.vitaly.models.Vote
 import suhov.vitaly.models.VoteListener
+import suhov.vitaly.parsers.MessageHandler
+import suhov.vitaly.utils.Logger
+import suhov.vitaly.utils.Utils.scope
 import java.util.Properties
 import javax.mail.Folder
 import javax.mail.Session
@@ -52,6 +53,7 @@ class MailConnector(private val voteListener: VoteListener) {
 		val jobList: MutableList<Deferred<Vote>> = mutableListOf()
 		messages.forEach { message ->
 			val deferred = scope.async {
+				Logger.printResult("Обрабатываем сообщение - ${messages.indexOf(message) + 1}")
 				MessageHandler.handleMessage(message)
 			}
 			jobList.add(deferred)
