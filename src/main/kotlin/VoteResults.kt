@@ -6,6 +6,7 @@ data class VoteResults(
 	val votersWithOutAttachment: MutableList<Vote> = mutableListOf(),
 	val votersWithOutAllVotes: MutableList<Vote> = mutableListOf(),
 	val votersWithOutSquareMeters: MutableList<Vote> = mutableListOf(),
+	val votersWithOutOwnNumber : MutableList<Vote> = mutableListOf(),
 	var totalSuccessSquareMeters: Double = 0.0,
 	val voteMap: MutableMap<Int, MutableMap<VoteType, Vote>> = createVoteMap()
 ) {
@@ -36,6 +37,9 @@ data class VoteResults(
 
 	fun addVotersWithOutSquareMeters(voter: Vote) {
 		votersWithOutSquareMeters.add(voter)
+	}
+	fun addVoterWithOutOwnNumber(voter: Vote) {
+		votersWithOutOwnNumber.add(voter)
 	}
 }
 

@@ -9,9 +9,10 @@ data class Vote (
 	val squareMeters: Double,
 	val voteMap: Map<Int, VoteType>,
 	val isHaveOwnType: Boolean = ownType != OwnType.NotFound,
-	val isHaveSquareMeters: Boolean = squareMeters != 0.0,
+	val isHaveSquareMeters: Boolean = squareMeters != Utils.defaultMeters,
 	val isHaveAttachment: Boolean,
-	val isHaveAllVotes: Boolean = checkVotes(voteMap)
+	val isHaveAllVotes: Boolean = checkVotes(voteMap),
+	val isHaveOwnNumber: Boolean = ownNumber != Utils.defaultNumber
 ) {
 	fun isFill() = isHaveSquareMeters && isHaveOwnType && isHaveAttachment && isHaveAllVotes
 }

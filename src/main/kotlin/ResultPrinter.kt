@@ -1,10 +1,14 @@
 package suhov.vitaly
 
+import suhov.vitaly.Utils.BLANK
+
 class ResultPrinter {
 	fun printResults(voteResults: VoteResults) {
 
+		val percent = (voteResults.totalSuccessSquareMeters / Utils.TOTAL_SQUARE_METERS * 100)
+		val stringPercent = String.format("%.3f", percent)
 
-		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters}\n")
+		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters} из ${Utils.TOTAL_SQUARE_METERS} это $stringPercent%\n")
 
 		voteResults.voteMap.forEach { (voteNumber, map) ->
 			var yesSum = 0.0
@@ -29,6 +33,36 @@ class ResultPrinter {
 			Logger.printResult("Проголосовали с ошибкой $errorSum")
 			Logger.printResult("//////////////////////////////////\n")
 		}
+
+		Logger.printResult("Квартиры проголосовавшие не за все вопросы (не будут учтены) - ")
+		voteResults.votersWithOutAllVotes.forEach {
+			Logger.printResult("${it.ownNumber}")
+		}
+		Logger.printResult(BLANK)
+
+		Logger.printResult("Квартиры проголосовавшие без квадратных метров (не будут учтены) - ")
+		voteResults.votersWithOutSquareMeters.forEach {
+			Logger.printResult("${it.ownNumber}")
+		}
+		Logger.printResult(BLANK)
+
+		Logger.printResult("Квартиры проголосовавшие без типа жилья (не будут учтены) - ")
+		voteResults.votersWithOutOwnType.forEach {
+			Logger.printResult("${it.ownNumber}")
+		}
+		Logger.printResult(BLANK)
+
+		Logger.printResult("Квартиры проголосовавшие без вложения (не будут учтены) - ")
+		voteResults.votersWithOutAttachment.forEach {
+			Logger.printResult("${it.ownNumber}")
+		}
+		Logger.printResult(BLANK)
+
+		Logger.printResult("Адреса, которые не указали номер квартиры (не будут учтены) - ")
+		voteResults.votersWithOutOwnNumber.forEach {
+			Logger.printResult("${it.ownEmail}")
+		}
+		Logger.printResult(BLANK)
 
 	}
 }

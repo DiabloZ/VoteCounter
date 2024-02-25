@@ -6,6 +6,7 @@ class VoteCounter(private val voteResultsListener: VoteResultsListener) {
 			voteList.forEach { voter ->
 				when {
 					voter.isFill() -> addGoodVoter(voter)
+					!voter.isHaveOwnNumber -> addVoterWithOutOwnNumber(voter)
 					else -> {
 						if (!voter.isHaveAllVotes) {
 							addVoterWithOutAllVotes(voter)

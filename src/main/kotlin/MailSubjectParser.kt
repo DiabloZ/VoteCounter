@@ -1,9 +1,11 @@
 package suhov.vitaly
 
+import suhov.vitaly.Utils.defaultMeters
+import suhov.vitaly.Utils.defaultNumber
+
 object MailSubjectParser {
 
-	private const val defaultMeters = 0.0
-	private const val defaultNumber = 0
+
 	private val regexDigital = Regex("\\d+.\\d")
 	fun handleSubject(subject: String): Triple<OwnType, Int, Double> {
 		val sub = subject.lowercase()
