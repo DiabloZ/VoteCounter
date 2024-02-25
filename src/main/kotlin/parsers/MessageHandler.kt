@@ -5,8 +5,8 @@ import suhov.vitaly.models.VoteType
 import suhov.vitaly.utils.Constants.BLANK
 import javax.mail.Address
 import javax.mail.Message
-import javax.mail.Multipart
 import javax.mail.Part
+import javax.mail.internet.MimeMultipart
 import javax.mail.internet.MimeUtility
 
 object MessageHandler {
@@ -27,7 +27,7 @@ object MessageHandler {
 				voteMap = MailContentParser.parse(answersText)
 			}
 			contentT.contains("multipart") -> {
-				val mpContent = content as? Multipart
+				val mpContent = content as? MimeMultipart
 				mpContent?.apply {
 					for (i in 0..< mpContent.count) {
 						val part = mpContent.getBodyPart(i)
@@ -40,6 +40,18 @@ object MessageHandler {
 							part.content != null -> {
 								val answersText = MailTextContentParser.cleanBodyContent(part.content.toString())
 								voteMap = MailContentParser.parse(answersText)
+								if (voteMap.isEmpty()){
+									val partInside = part.content as? MimeMultipart
+									partInside?.apply {
+										for (j in 0..< partInside.count) {
+											val part2 = partInside.getBodyPart(j)
+											if (part2.contentType == "text/plain; charset=utf-8"){
+												val answersText2 = MailTextContentParser.cleanBodyContent(part2.content.toString())
+												voteMap = MailContentParser.parse(answersText2)
+											}
+										}
+									}
+								}
 							}
 						}
 					}
