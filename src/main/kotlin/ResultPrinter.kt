@@ -35,33 +35,45 @@ class ResultPrinter {
 			Logger.printResult("//////////////////////////////////\n")
 		}
 
-		Logger.printResult("Квартиры проголосовавшие не за все вопросы (не будут учтены) - ")
-		voteResults.votersWithOutAllVotes.forEach {
-			Logger.printResult("${it.ownNumber}")
+		Logger.printResult("НЕ УЧТЁННЫЕ АДРЕСА/КВАРТИРЫ - ПРИЧИНЫ - ")
+		Logger.printResult("Квартиры проголосовавшие не на все вопросы - ")
+		voteResults.votersWithOutAllVotes.forEach { voter ->
+
+			if (!voteResults.goodVoters.any { it.ownEmail == voter.ownEmail }) {
+				Logger.printResult("${voter.ownNumber}")
+			}
 		}
 		Logger.printResult(BLANK)
 
-		Logger.printResult("Квартиры проголосовавшие без квадратных метров (не будут учтены) - ")
-		voteResults.votersWithOutSquareMeters.forEach {
-			Logger.printResult("${it.ownNumber}")
+		Logger.printResult("Квартиры проголосовавшие без квадратных метров - ")
+		voteResults.votersWithOutSquareMeters.forEach {voter ->
+			if (!voteResults.goodVoters.any { it.ownEmail == voter.ownEmail }) {
+				Logger.printResult("${voter.ownNumber}")
+			}
 		}
 		Logger.printResult(BLANK)
 
-		Logger.printResult("Квартиры проголосовавшие без типа жилья (не будут учтены) - ")
-		voteResults.votersWithOutOwnType.forEach {
-			Logger.printResult("${it.ownNumber}")
+		Logger.printResult("Квартиры проголосовавшие без типа жилья - ")
+		voteResults.votersWithOutOwnType.forEach {voter ->
+			if (!voteResults.goodVoters.any { it.ownEmail == voter.ownEmail }) {
+				Logger.printResult("${voter.ownNumber}")
+			}
 		}
 		Logger.printResult(BLANK)
 
-		Logger.printResult("Квартиры проголосовавшие без вложения (не будут учтены) - ")
-		voteResults.votersWithOutAttachment.forEach {
-			Logger.printResult("${it.ownNumber}")
+		Logger.printResult("Квартиры проголосовавшие без вложения - ")
+		voteResults.votersWithOutAttachment.forEach {voter ->
+			if (!voteResults.goodVoters.any { it.ownEmail == voter.ownEmail }) {
+				Logger.printResult("${voter.ownNumber}")
+			}
 		}
 		Logger.printResult(BLANK)
 
-		Logger.printResult("Адреса, которые не указали номер квартиры (не будут учтены) - ")
-		voteResults.votersWithOutOwnNumber.forEach {
-			Logger.printResult(it.ownEmail)
+		Logger.printResult("Адреса, которые не указали номер квартиры- ")
+		voteResults.votersWithOutOwnNumber.forEach {voter ->
+			if (!voteResults.goodVoters.any { it.ownEmail == voter.ownEmail }) {
+				Logger.printResult(voter.ownEmail)
+			}
 		}
 		Logger.printResult(BLANK)
 
