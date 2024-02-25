@@ -1,16 +1,16 @@
 package suhov.vitaly.parsers
 
+import suhov.vitaly.models.OwnType
 import suhov.vitaly.utils.Constants.DEFAULT_METERS
 import suhov.vitaly.utils.Constants.DEFAULT_NUMBER
 import suhov.vitaly.utils.Constants.MAXIMUM_SIZE_OF_VOTE
-import suhov.vitaly.models.OwnType
 
 object MailSubjectParser {
 
+	private val regexDigital = Regex("(\\d+(?:\\.\\d+)?)")
 
-	private val regexDigital = Regex("\\d+.\\d")
 	fun handleSubject(subject: String): Triple<OwnType, Int, Double> {
-		val sub = subject.lowercase()
+		val sub = subject.lowercase().replace(",", ".").trim()
 
 		val ownType = when {
 			OwnType.Storage.nameList.any { sub.contains(it) } -> OwnType.Storage
@@ -40,14 +40,18 @@ object MailSubjectParser {
 }
 
 fun main(){
+
 	val subject = "Квартира 1234, Метраж 82.2"
 	val result = MailSubjectParser.handleSubject(subject)
 	val subject2 = "Кладовка 123, Метраж 3.2"
 	val result2 = MailSubjectParser.handleSubject(subject2)
 	val errSubject = "Квартира 1234, Метраж "
 	val errResult = MailSubjectParser.handleSubject(errSubject)
+	val subjectLast = "Квартира 1 Метраж 12,2"
+	val lastResult = MailSubjectParser.handleSubject(subjectLast)
 
 	result
 	result2
 	errResult
+	lastResult
 }
