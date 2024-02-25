@@ -14,6 +14,7 @@ object Logger {
 	}
 
 	fun printResult(text: Any){
-		logger.info("$text")
+		println(text)
+		//logger.info("$text")
 	}
 }

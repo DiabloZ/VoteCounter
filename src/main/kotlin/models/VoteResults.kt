@@ -1,6 +1,7 @@
 package suhov.vitaly.models
 
 import suhov.vitaly.utils.Constants
+import suhov.vitaly.utils.Constants.NUMBER_OF_VOICES
 
 data class VoteResults(
 	val goodVoters: MutableList<Vote> = mutableListOf(),
@@ -8,7 +9,7 @@ data class VoteResults(
 	val votersWithOutAttachment: MutableList<Vote> = mutableListOf(),
 	val votersWithOutAllVotes: MutableList<Vote> = mutableListOf(),
 	val votersWithOutSquareMeters: MutableList<Vote> = mutableListOf(),
-	val votersWithOutOwnNumber : MutableList<Vote> = mutableListOf(),
+	val votersWithOutOwnNumber: MutableList<Vote> = mutableListOf(),
 	var totalSuccessSquareMeters: Double = Constants.DEFAULT_METERS,
 	val voteMap: MutableMap<Int, MutableMap<VoteType, Vote>> = createVoteMap()
 ) {
@@ -40,31 +41,15 @@ data class VoteResults(
 	fun addVotersWithOutSquareMeters(voter: Vote) {
 		votersWithOutSquareMeters.add(voter)
 	}
+
 	fun addVoterWithOutOwnNumber(voter: Vote) {
 		votersWithOutOwnNumber.add(voter)
 	}
 }
 
-private fun createVoteMap(): MutableMap<Int, MutableMap<VoteType, Vote>> = mutableMapOf(
-	1 to mutableMapOf(),
-	2 to mutableMapOf(),
-	3 to mutableMapOf(),
-	4 to mutableMapOf(),
-	5 to mutableMapOf(),
-	6 to mutableMapOf(),
-	7 to mutableMapOf(),
-	8 to mutableMapOf(),
-	9 to mutableMapOf(),
-	10 to mutableMapOf(),
-	11 to mutableMapOf(),
-	12 to mutableMapOf(),
-	13 to mutableMapOf(),
-	14 to mutableMapOf(),
-	15 to mutableMapOf(),
-	16 to mutableMapOf(),
-	17 to mutableMapOf(),
-	18 to mutableMapOf(),
-	19 to mutableMapOf(),
-	20 to mutableMapOf(),
-	21 to mutableMapOf(),
-)
+private fun createVoteMap(): MutableMap<Int, MutableMap<VoteType, Vote>> =
+	mutableMapOf<Int, MutableMap<VoteType, Vote>>().apply {
+		for (i in 1..NUMBER_OF_VOICES) {
+			this[i] = mutableMapOf()
+		}
+	}

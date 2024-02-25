@@ -6,13 +6,14 @@ import suhov.vitaly.utils.Constants
 import suhov.vitaly.utils.Constants.BLANK
 import suhov.vitaly.utils.Constants.DEFAULT_METERS
 import suhov.vitaly.utils.Logger
+import suhov.vitaly.utils.Utils.calculatePercent
+import suhov.vitaly.utils.Utils.questionMap
 
 class ResultPrinter {
 	fun printResults(voteResults: VoteResults) {
 
-		val percent = (voteResults.totalSuccessSquareMeters / Constants.TOTAL_SQUARE_METERS * 100)
-		val stringPercent = String.format("%.3f", percent)
-
+		val stringPercent = calculatePercent(sum = voteResults.totalSuccessSquareMeters, total = Constants.TOTAL_SQUARE_METERS)
+		Logger.printResult("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters} из ${Constants.TOTAL_SQUARE_METERS} это $stringPercent%\n")
 
 		voteResults.voteMap.forEach { (voteNumber, map) ->
@@ -30,12 +31,19 @@ class ResultPrinter {
 				}
 			}
 
+			val totalVoters = yesSum + noSum + abstainedSum + errorSum
+			val yesSumPercent = calculatePercent(sum = yesSum, total = totalVoters)
+			val noSumPercent = calculatePercent(sum = noSum, total = totalVoters)
+			val abstainedSumPercent = calculatePercent(sum = abstainedSum, total = totalVoters)
+			val errorSumPercent = calculatePercent(sum = errorSum, total = totalVoters)
+
 			Logger.printResult("Вопрос №$voteNumber")
+			Logger.printResult("${questionMap[voteNumber]}\n")
 			Logger.printResult("Проголосовали -")
-			Logger.printResult("За $yesSum")
-			Logger.printResult("Против $noSum")
-			Logger.printResult("Воздержались $abstainedSum")
-			Logger.printResult("Проголосовали с ошибкой $errorSum")
+			Logger.printResult("За - кв.м $yesSum, $yesSumPercent%")
+			Logger.printResult("Против - кв.м $noSum, $noSumPercent%")
+			Logger.printResult("Воздержались - кв.м $abstainedSum, $abstainedSumPercent%")
+			Logger.printResult("Проголосовали с ошибкой кв.м - $errorSum, $errorSumPercent%")
 			Logger.printResult("//////////////////////////////////\n")
 		}
 
