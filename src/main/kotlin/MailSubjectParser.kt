@@ -1,7 +1,8 @@
 package suhov.vitaly
 
-import suhov.vitaly.Utils.defaultMeters
-import suhov.vitaly.Utils.defaultNumber
+import suhov.vitaly.Constants.DEFAULT_METERS
+import suhov.vitaly.Constants.DEFAULT_NUMBER
+import suhov.vitaly.Constants.MAXINUM_SIZE_OF_VOTE
 
 object MailSubjectParser {
 
@@ -26,12 +27,12 @@ object MailSubjectParser {
 			.mapNotNull { it.groupValues.firstOrNull() }
 
 
-		val flatNumber = digital.firstOrNull()?.toIntOrNull() ?: defaultNumber
-		val totalSquareMeters = digital.lastOrNull()?.toDoubleOrNull() ?: defaultMeters
-		val squareMeters = if (digital.size == 2 && totalSquareMeters < 88.0) {
+		val flatNumber = digital.firstOrNull()?.toIntOrNull() ?: DEFAULT_NUMBER
+		val totalSquareMeters = digital.lastOrNull()?.toDoubleOrNull() ?: DEFAULT_METERS
+		val squareMeters = if (digital.size == MAXINUM_SIZE_OF_VOTE && totalSquareMeters < 88.0) {
 			totalSquareMeters
 		} else {
-			defaultMeters
+			DEFAULT_METERS
 		}
 		return flatNumber to squareMeters
 	}

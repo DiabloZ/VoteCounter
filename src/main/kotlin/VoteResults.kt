@@ -7,7 +7,7 @@ data class VoteResults(
 	val votersWithOutAllVotes: MutableList<Vote> = mutableListOf(),
 	val votersWithOutSquareMeters: MutableList<Vote> = mutableListOf(),
 	val votersWithOutOwnNumber : MutableList<Vote> = mutableListOf(),
-	var totalSuccessSquareMeters: Double = 0.0,
+	var totalSuccessSquareMeters: Double = Constants.DEFAULT_METERS,
 	val voteMap: MutableMap<Int, MutableMap<VoteType, Vote>> = createVoteMap()
 ) {
 	fun addGoodVoter(voter: Vote) {

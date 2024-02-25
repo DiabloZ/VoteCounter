@@ -5,8 +5,8 @@ object MailTextContentParser {
 	fun cleanBodyContent(content: String): String = content
 		.replace("<br />", "\n")
 		.replace("</div><div>", "\n")
-		.replace(" ", Utils.BLANK)
-		.replace(regexHtml, Utils.BLANK)
+		.replace(" ", Constants.BLANK)
+		.replace(regexHtml, Constants.BLANK)
 }
 
 fun main(){

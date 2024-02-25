@@ -1,6 +1,6 @@
 package suhov.vitaly
 
-import suhov.vitaly.Utils.BLANK
+import suhov.vitaly.Constants.BLANK
 import javax.mail.Address
 import javax.mail.Message
 import javax.mail.Multipart

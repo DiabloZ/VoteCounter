@@ -1,20 +1,21 @@
 package suhov.vitaly
 
-import suhov.vitaly.Utils.BLANK
+import suhov.vitaly.Constants.BLANK
+import suhov.vitaly.Constants.DEFAULT_METERS
 
 class ResultPrinter {
 	fun printResults(voteResults: VoteResults) {
 
-		val percent = (voteResults.totalSuccessSquareMeters / Utils.TOTAL_SQUARE_METERS * 100)
+		val percent = (voteResults.totalSuccessSquareMeters / Constants.TOTAL_SQUARE_METERS * 100)
 		val stringPercent = String.format("%.3f", percent)
 
-		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters} из ${Utils.TOTAL_SQUARE_METERS} это $stringPercent%\n")
+		Logger.printResult("Всего метров квадратных проголосовало - ${voteResults.totalSuccessSquareMeters} из ${Constants.TOTAL_SQUARE_METERS} это $stringPercent%\n")
 
 		voteResults.voteMap.forEach { (voteNumber, map) ->
-			var yesSum = 0.0
-			var noSum = 0.0
-			var abstainedSum = 0.0
-			var errorSum = 0.0
+			var yesSum = DEFAULT_METERS
+			var noSum = DEFAULT_METERS
+			var abstainedSum = DEFAULT_METERS
+			var errorSum = DEFAULT_METERS
 
 			map.forEach { (voteType, vote) ->
 				when(voteType){
@@ -60,7 +61,7 @@ class ResultPrinter {
 
 		Logger.printResult("Адреса, которые не указали номер квартиры (не будут учтены) - ")
 		voteResults.votersWithOutOwnNumber.forEach {
-			Logger.printResult("${it.ownEmail}")
+			Logger.printResult(it.ownEmail)
 		}
 		Logger.printResult(BLANK)
 

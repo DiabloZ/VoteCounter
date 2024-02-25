@@ -1,5 +1,7 @@
 package suhov.vitaly
 
+import suhov.vitaly.Constants.MAXINUM_SIZE_OF_VOTE
+
 object MailContentParser {
 
 	private const val DELIMITER = "\n"
@@ -17,8 +19,8 @@ object MailContentParser {
 			val answerNumber = answers.firstOrNull()?.toIntOrNull()
 			val answerDigit = answers.lastOrNull()?.toIntOrNull()
 
-			if (answerNumber != null && answerDigit != null && answerNumber <= numberOfVoices) {
-				if (answers.size > 2 || answers.size <= 1) {
+			if (answerNumber != null && answerDigit != null && answerNumber <= Constants.NUMBER_OF_VOICES) {
+				if (answers.size > MAXINUM_SIZE_OF_VOTE || answers.size <= 1) {
 					mapVotes[answerNumber] = VoteType.ERROR
 					return@forEach
 				}

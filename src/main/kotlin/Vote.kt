@@ -9,15 +9,15 @@ data class Vote (
 	val squareMeters: Double,
 	val voteMap: Map<Int, VoteType>,
 	val isHaveOwnType: Boolean = ownType != OwnType.NotFound,
-	val isHaveSquareMeters: Boolean = squareMeters != Utils.defaultMeters,
+	val isHaveSquareMeters: Boolean = squareMeters != Constants.DEFAULT_METERS,
 	val isHaveAttachment: Boolean,
 	val isHaveAllVotes: Boolean = checkVotes(voteMap),
-	val isHaveOwnNumber: Boolean = ownNumber != Utils.defaultNumber
+	val isHaveOwnNumber: Boolean = ownNumber != Constants.DEFAULT_NUMBER
 ) {
 	fun isFill() = isHaveSquareMeters && isHaveOwnType && isHaveAttachment && isHaveAllVotes
 }
 
-const val numberOfVoices = 21
+
 
 private fun checkVotes(voteMap: Map<Int, VoteType>): Boolean {
 	var isContainAllAnswers = true
@@ -29,5 +29,5 @@ private fun checkVotes(voteMap: Map<Int, VoteType>): Boolean {
 		numAnswer++
 		isContainAllAnswers = num == numAnswer && (voteType != VoteType.ERROR)
 	}
-	return isContainAllAnswers && numAnswer == numberOfVoices
+	return isContainAllAnswers && numAnswer == Constants.NUMBER_OF_VOICES
 }
