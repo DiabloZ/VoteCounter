@@ -37,7 +37,7 @@ object MessageHandler {
 							disposition != null && disposition.contains(Part.ATTACHMENT) -> {
 								isHaveAttachment = true
 							}
-							part.content != null -> {
+							part.content != null && voteMap.size != NUMBER_OF_VOICES -> {
 								val answersText = MailTextContentParser.cleanBodyContent(part.content.toString())
 								voteMap = MailContentParser.parse(answersText)
 								if (voteMap.size != NUMBER_OF_VOICES){

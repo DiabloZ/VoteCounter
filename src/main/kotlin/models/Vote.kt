@@ -16,7 +16,7 @@ data class Vote (
 	val isHaveAllVotes: Boolean = checkVotes(voteMap),
 	val isHaveOwnNumber: Boolean = ownNumber != Constants.DEFAULT_NUMBER
 ) {
-	fun isFill() = isHaveSquareMeters && isHaveOwnType && isHaveAttachment && isHaveAllVotes
+	fun isFill() = isHaveSquareMeters && isHaveOwnType /*&& isHaveAttachment*/ && isHaveAllVotes
 }
 
 
